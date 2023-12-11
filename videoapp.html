@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Player</title>
+
+
+    <!-- this is bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <!-- <div class="text-info h1"> Created this Appliction using the JavaScript and Bootstrap</div> -->
+    <div>
+        <h2 class="text-danger m-3">Video Application using JaScript </h2>
+    </div>
+    <div id="player" class="m-3"></div>
+
+    <div id="afterplay" class="m-3">
+
+    </div>
+    <div id="schange" class="m-3"></div>
+
+    <script>
+        // https://youtu.be/vLqTf2b6GZw?si=jBs-3lFTtCHZ0YOg
+        //here this is full video link, and this is video id vLqTf2b6GZw?si=jBs-3lFTtCHZ0YOg
+        const VIDEO_ID = 'vLqTf2b6GZw?si=jBs-3lFTtCHZ0YOg'; // Replace with your unlisted YouTube video ID
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: VIDEO_ID,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 1,
+                    'showinfo': 0,
+                    'rel': 0,
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+
+        //this event onPlayReady() will accure then this function will call and 
+        // in message what ever you want to show we can do this is function
+        function onPlayerReady(event) {
+
+            var afterplay = document.getElementById("afterplay");
+            afterplay.innerHTML = "Play is ready click to start";
+        }
+
+        //same as the above function when state will change then it will call
+        //and we can give any customization etc here 
+        function onPlayerStateChange(event) {
+            var schange = document.getElementById("schange").innerHTML = "state has been changed because you have click there";
+        }
+
+        // Load YouTube API script asynchronously
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
+
+<!-- this is JavaScript bootstrap cdn -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  
+</body>
+
+</html>
